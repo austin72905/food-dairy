@@ -88,7 +88,6 @@ export default function App() {
     const [restaurantData, setRestaurantData] = useState(initData)
 
     const getRestaurantList = async () => {
-        //const resp = await axios.get("http://localhost:19870/Food/GetRestaurantList")
         const resp = await reqGetRestaurantList()
         const result = resp.data
         console.log("result=", result)
@@ -100,12 +99,6 @@ export default function App() {
     const addRestaurant = async (restaurantInfo) => {
         setLoadingStatus(true)
         console.log("restaurantInfo", restaurantInfo)
-        // //POST FORM 方法
-        // const params = new URLSearchParams()
-        // Object.keys(restaurantInfo).forEach((key) => {
-        //     params.append(key, restaurantInfo[key])
-        // })
-        // const resp = await axios.post("http://localhost:19870/Food/AddRestaurant", params)
         const resp = await reqAddRestaurant(restaurantInfo)
         const result = resp.data
         getRestaurantList()
@@ -114,11 +107,6 @@ export default function App() {
 
     const updateRestaurant = async (restaurantInfo) => {
         setLoadingStatus(true)
-        // const params = new URLSearchParams()
-        // Object.keys(restaurantInfo).forEach((key) => {
-        //     params.append(key, restaurantInfo[key])
-        // })
-        // const resp = await axios.post("http://localhost:19870/Food/SaveRestaurant", params)
         const resp = await reqUpdateRestaurant(restaurantInfo)
         const result = resp.data
         getRestaurantList()
@@ -127,12 +115,6 @@ export default function App() {
 
     const deleteRestaurant = async () => {
         setLoadingStatus(true)
-        // const encryptedStr = selectedItem.join(",")
-
-        // const postData = Base64.encode(encryptedStr)
-        // const params = new URLSearchParams()
-        // params.append("UniqueIdList", postData)
-        // const resp = await axios.post("http://localhost:19870/Food/DeleteRestaurant", params)
         const resp = await reqDeleteRestaurant(selectedItem)
         const result = resp.data
         getRestaurantList()
@@ -146,7 +128,6 @@ export default function App() {
     }
 
     const getRestaurantKind = async () => {
-        //const resp = await axios.get("http://localhost:19870/Food/GetRestaurantKind")
         const resp = await reqGetRestaurantKind()
         const result = resp.data
         console.log("result", result)
@@ -156,12 +137,6 @@ export default function App() {
 
     const searchRestaurants = async (searchParams) => {
         setLoadingStatus(true)
-        // console.log("searchParams", searchParams)
-        // const params = new URLSearchParams()
-        // params.append(searchParams.name, searchParams.keyWord)
-        // if (searchParams.kind)
-        //     params.append("kind", searchParams.kind)
-        // const resp = await axios.get(`http://localhost:19870/Food/GetRestaurantList?${params}`)
         const resp = await reqSearchRestaurants(searchParams)
         const result = resp.data
         console.log("result", result)
@@ -181,10 +156,6 @@ export default function App() {
         }
     }, [selectMode])
 
-    useEffect(() => {
-        //setTimeout(()=>setLoadingStatus(false),3000)
-
-    }, [restaurantListData])
 
     return (
 
